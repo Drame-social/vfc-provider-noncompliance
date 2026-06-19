@@ -1,0 +1,8 @@
+check_name,passed,details
+provider_id uniqueness,True,"62,000 unique / 62,000 rows"
+site_visit_id uniqueness,True,"168,588 unique / 168,588 rows"
+referential integrity: site_visits.provider_id -> providers.provider_id,True,0 missing provider links
+no missing key fields in analytic complete cohort,True,0 missing key values
+annual counts and non-compliance rates match synthetic targets,True,max pct diff=0.0
+raw incomplete records include realistic missingness,True,"16,665 missing key values in incomplete records"
+synthetic label present in all row-level data files,True,All row-level records must be clearly marked synthetic.
