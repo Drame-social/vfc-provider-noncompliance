@@ -1,0 +1,81 @@
+// vfc_noncompliance_measures.dax
+// Power BI measures for synthetic VFC-style provider non-compliance dashboard.
+// Table name assumed: site_visits_synthetic
+
+Total Site Visits =
+DISTINCTCOUNT(site_visits_synthetic[site_visit_id])
+
+Analytic Complete Visits =
+CALCULATE(
+    DISTINCTCOUNT(site_visits_synthetic[site_visit_id]),
+    site_visits_synthetic[analytic_complete_flag] = 1
+)
+
+Non-Compliant Visits =
+CALCULATE(
+    DISTINCTCOUNT(site_visits_synthetic[site_visit_id]),
+    site_visits_synthetic[analytic_complete_flag] = 1,
+    site_visits_synthetic[overall_non_compliant_flag] = 1
+)
+
+Compliant Visits =
+CALCULATE(
+    DISTINCTCOUNT(site_visits_synthetic[site_visit_id]),
+    site_visits_synthetic[analytic_complete_flag] = 1,
+    site_visits_synthetic[overall_non_compliant_flag] = 0
+)
+
+Non-Compliance Rate =
+DIVIDE([Non-Compliant Visits], [Analytic Complete Visits])
+
+Training Non-Compliance Rate =
+DIVIDE(
+    CALCULATE(COUNTROWS(site_visits_synthetic), site_visits_synthetic[training_compliant] = 0, site_visits_synthetic[analytic_complete_flag] = 1),
+    [Analytic Complete Visits]
+)
+
+Eligibility Non-Compliance Rate =
+DIVIDE(
+    CALCULATE(COUNTROWS(site_visits_synthetic), site_visits_synthetic[eligibility_compliant] = 0, site_visits_synthetic[analytic_complete_flag] = 1),
+    [Analytic Complete Visits]
+)
+
+Inventory Non-Compliance Rate =
+DIVIDE(
+    CALCULATE(COUNTROWS(site_visits_synthetic), site_visits_synthetic[inventory_compliant] = 0, site_visits_synthetic[analytic_complete_flag] = 1),
+    [Analytic Complete Visits]
+)
+
+Unit S&H Non-Compliance Rate =
+DIVIDE(
+    CALCULATE(COUNTROWS(site_visits_synthetic), site_visits_synthetic[unit_storage_handling_compliant] = 0, site_visits_synthetic[analytic_complete_flag] = 1),
+    [Analytic Complete Visits]
+)
+
+Documentation Non-Compliance Rate =
+DIVIDE(
+    CALCULATE(COUNTROWS(site_visits_synthetic), site_visits_synthetic[documentation_compliant] = 0, site_visits_synthetic[analytic_complete_flag] = 1),
+    [Analytic Complete Visits]
+)
+
+Site S&H Non-Compliance Rate =
+DIVIDE(
+    CALCULATE(COUNTROWS(site_visits_synthetic), site_visits_synthetic[site_storage_handling_compliant] = 0, site_visits_synthetic[analytic_complete_flag] = 1),
+    [Analytic Complete Visits]
+)
+
+// NOTE: YoY Non-Compliance Change requires a Calendar table in your Power BI model.
+// Create one via: Modeling > New Table > Calendar = CALENDARAUTO()
+// Then mark it as a Date Table and relate Calendar[Date] to site_visits_synthetic[visit_start_date].
+YoY Non-Compliance Change =
+[Non-Compliance Rate] -
+CALCULATE(
+    [Non-Compliance Rate],
+    DATEADD('Calendar'[Date], -1, YEAR)
+)
+
+Incomplete Raw Records =
+CALCULATE(
+    DISTINCTCOUNT(site_visits_synthetic[site_visit_id]),
+    site_visits_synthetic[analytic_complete_flag] = 0
+)
