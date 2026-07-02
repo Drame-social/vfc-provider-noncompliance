@@ -1,9 +1,6 @@
 # VFC Provider Non-Compliance Analytics
 
-**Author:** Aly Drame, MD, MPH, MBA  
-**Languages:** Python · SQL · SAS · Power BI  
-**Domain:** Immunization program compliance, public health surveillance  
-**Data:** Fully synthetic — generated for portfolio demonstration
+*By Aly Drame, MD, MPH, MBA.* A large synthetic VFC-style provider-compliance dataset (62,000 providers across 12 budget periods) analyzed in Python, SQL, SAS, and Power BI to track how non-compliance shifts over time. Synthetic data only — no real CDC, VFC, provider, or patient records.
 
 ---
 
