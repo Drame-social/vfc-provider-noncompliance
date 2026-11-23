@@ -1,8 +1,8 @@
 /*====================================================================
-  Ported from cdc-immunization-compliance-analytics (SAS) before that
-  repo was retired. Analytic templates only; the libname (immuno) and
-  table references follow the original cdc schema and should be adapted
-  to the vfc-provider-noncompliance tables before running.
+  Illustrative, unexecuted SAS template retained from a prior portfolio
+  project. No CDC data, credentials, or non-public records are included.
+  The immuno libref, table names, and file paths are placeholders:
+  replace them with authorized local resources and validate all results before use. Verify any upstream source/license terms independently.
 ====================================================================*/
 
 /*====================================================================
