@@ -30,6 +30,20 @@ All row-level files in this repository are **synthetic**. They are not CDC data,
 
 ---
 
+## Power BI Dashboard
+
+The **Synthetic VFC Provider Registry** dashboard uses 62,000 synthetic portfolio records. It shows provider counts by region, category, urbanicity, and size, plus simulated enrollments by year from 1998 through 2024.
+
+![Power BI dashboard showing the full synthetic registry of 62,000 records](portfolio_assets/power_bi/vfc-provider-registry-overview.png)
+
+*Full registry with all slicers set to All.*
+
+![Power BI dashboard filtered to 15,663 synthetic Rural records](portfolio_assets/power_bi/vfc-provider-registry-rural.png)
+
+*Urbanicity set to Rural, showing 15,663 synthetic records.*
+
+---
+
 ## Analytic Dimensions
 
 Non-compliance is examined across the following dimensions:
